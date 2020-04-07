@@ -3,13 +3,13 @@ const setUpGlobalObject = require("../lib/sugar");
 // Invoking this function adds the new methods to the Global Object
 setUpGlobalObject();
 
-describe("Object.size", () => {
+describe.only("Object.size", () => {
   test("returns the correct size when given an object", () => {
     expect(
       Object.size({
         a: 1,
         b: 2,
-        c: 3
+        c: 3,
       })
     ).toBe(3);
 
@@ -18,13 +18,13 @@ describe("Object.size", () => {
         a: 1,
         b: 2,
         c: 3,
-        d: 4
+        d: 4,
       })
     ).toBe(4);
 
     expect(
       Object.size({
-        name: "Susan"
+        name: "Susan",
       })
     ).toBe(1);
 
@@ -39,7 +39,7 @@ describe("Object.min", () => {
         a: 4,
         b: 3,
         c: 2,
-        d: 9
+        d: 9,
       })
     ).toBe(2);
 
@@ -48,7 +48,7 @@ describe("Object.min", () => {
         a: 434,
         b: 342,
         c: 200,
-        d: 9
+        d: 9,
       })
     ).toBe(9);
   });
@@ -61,7 +61,7 @@ describe("Object.max", () => {
         a: 4,
         b: 3,
         c: 2,
-        d: 9
+        d: 9,
       })
     ).toBe(9);
 
@@ -70,7 +70,7 @@ describe("Object.max", () => {
         a: 434,
         b: 342,
         c: 200,
-        d: 9
+        d: 9,
       })
     ).toBe(434);
   });
@@ -80,7 +80,7 @@ describe("Object.clone", () => {
   test("returns a copy of the object", () => {
     const person1 = {
       name: "Sally",
-      location: "Leeds"
+      location: "Leeds",
     };
     const person2 = Object.clone(person1);
 
@@ -96,7 +96,7 @@ describe("Object.get", () => {
       Object.get(
         {
           name: "Sally",
-          location: "Leeds"
+          location: "Leeds",
         },
         "name"
       )
@@ -106,7 +106,7 @@ describe("Object.get", () => {
       Object.get(
         {
           name: "Sally",
-          location: "Leeds"
+          location: "Leeds",
         },
         "location"
       )
@@ -118,7 +118,7 @@ describe("Object.get", () => {
       Object.get(
         {
           name: "Sally",
-          location: "Leeds"
+          location: "Leeds",
         },
         "address"
       )
@@ -128,7 +128,7 @@ describe("Object.get", () => {
       Object.get(
         {
           name: "Sally",
-          location: "Leeds"
+          location: "Leeds",
         },
         "age"
       )
@@ -154,7 +154,7 @@ describe("Object.has", () => {
       name: "Sally",
       location: "Leeds",
       address: null,
-      signedIn: false
+      signedIn: false,
     };
     expect(Object.has(obj1, "signedIn")).toBe(true);
     expect(Object.has(obj1, "address")).toBe(true);
@@ -166,7 +166,7 @@ describe("Object.sum", () => {
     const obj = {
       a: 1,
       b: 4,
-      c: 10
+      c: 10,
     };
     expect(Object.sum(obj)).toBe(15);
   });
@@ -182,7 +182,7 @@ describe("Object.sum", () => {
       b: 4,
       c: false,
       d: 10,
-      e: "cat"
+      e: "cat",
     };
     expect(Object.sum(obj)).toBe(15);
   });
@@ -193,7 +193,7 @@ describe("Object.sum", () => {
       b: "foo",
       c: "bar",
       d: "snail",
-      e: "cat"
+      e: "cat",
     };
     expect(Object.sum(obj)).toBe(0);
   });
@@ -203,12 +203,12 @@ describe("Object.invert", () => {
   test("returns a new object which is the inversion of the given object", () => {
     const original = {
       name: "Sally",
-      location: "Leeds"
+      location: "Leeds",
     };
 
     const expected = {
       Sally: "name",
-      Leeds: "location"
+      Leeds: "location",
     };
 
     // Checking we are getting a new object created
@@ -221,13 +221,13 @@ describe("Object.invert", () => {
     const original = {
       name: "Sally",
       location: "Leeds",
-      address: "5 Hull Road, Beeston"
+      address: "5 Hull Road, Beeston",
     };
 
     const expected = {
       Sally: "name",
       Leeds: "location",
-      "5 Hull Road, Beeston": "address"
+      "5 Hull Road, Beeston": "address",
     };
 
     expect(Object.invert(original)).toEqual(expected);
@@ -241,7 +241,7 @@ describe("Object.addAll", () => {
     const expected = {
       a: 1,
       b: 3,
-      c: "foo"
+      c: "foo",
     };
 
     expect(Object.addAll(objects)).toEqual(expected);
@@ -252,7 +252,7 @@ describe("Object.addAll", () => {
 
     const expected = {
       a: "foo",
-      b: 3
+      b: 3,
     };
 
     expect(Object.addAll(objects)).toEqual(expected);
@@ -265,7 +265,7 @@ describe("Object.addAll", () => {
       a: 1,
       b: 3,
       c: "foo",
-      d: "bar"
+      d: "bar",
     };
 
     expect(Object.addAll(objects)).toEqual(expected);
@@ -282,7 +282,7 @@ describe("Object.find", () => {
       a: 1,
       b: 220,
       c: 33,
-      d: 44
+      d: 44,
     };
 
     const result = Object.find(obj, matcherFunc);
@@ -299,7 +299,7 @@ describe("Object.find", () => {
       a: 1,
       b: 22,
       c: 4,
-      d: 12
+      d: 12,
     };
 
     const result = Object.find(obj, matcherFunc);
@@ -318,7 +318,7 @@ describe("Object.every", () => {
       a: 100,
       b: 220,
       c: 500,
-      d: 603
+      d: 603,
     };
 
     const result = Object.every(obj, matcherFunc);
@@ -335,7 +335,7 @@ describe("Object.every", () => {
       a: 10,
       b: 220,
       c: 400,
-      d: 122
+      d: 122,
     };
 
     const result = Object.every(obj, matcherFunc);
@@ -354,7 +354,7 @@ describe("Object.some", () => {
       a: 100,
       b: 2,
       c: 500,
-      d: 5
+      d: 5,
     };
 
     const result = Object.some(obj, matcherFunc);
@@ -371,7 +371,7 @@ describe("Object.some", () => {
       a: 10,
       b: 20,
       c: 40,
-      d: 12
+      d: 12,
     };
 
     const result = Object.some(obj, matcherFunc);
